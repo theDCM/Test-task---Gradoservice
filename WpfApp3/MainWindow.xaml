@@ -1,0 +1,49 @@
+﻿<Window x:Class="WpfApp3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <ListBox x:Name="webSitesList" ItemsSource="{Binding}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Url}" FontSize="16" />
+                        <TextBlock Text="{Binding IsAvailable}" FontSize="10"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="intervalTextBox" Text="{Binding Counter}" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Button x:Name="intervalButton" Grid.Column="1" Content="Установить интервал (сек)" Click="SetInterval_Click"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="urlTextBox" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Button x:Name="urlButton" Grid.Column="1" Content="Добавить веб-сайт" Click="Add_Click"/>
+            </Grid>
+            <Button Grid.Column="1" Content="Удалить выбранный сайт" Click="Delete_Click"/>
+        </Grid>
+    </Grid>
+</Window>
