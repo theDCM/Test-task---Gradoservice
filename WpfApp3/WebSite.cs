@@ -51,11 +51,11 @@ namespace WpfApp3
             }
         }
         //[NotMapped]
-        public async void CheckAvailability()
+        public void CheckAvailability()
         {
             try
             {
-                if ((await client.GetAsync(url)).StatusCode == HttpStatusCode.OK) availability = true;
+                if (client.GetAsync(url).Result.StatusCode == HttpStatusCode.OK) availability = true;
                 else availability = false;
             }
             catch (Exception e)

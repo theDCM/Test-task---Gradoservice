@@ -58,8 +58,9 @@ namespace WpfApp3
             ApplicationContext db = param as ApplicationContext;
             while (true)
             {
-                for (int i = 0; i < db.WebSites.Count(); i++)
-                    db.WebSites.ToList<WebSite>()[i].CheckAvailability();
+                DbSet<WebSite> sites = db.WebSites;
+                foreach (WebSite site in sites)
+                    site.CheckAvailability();
                 Thread.Sleep(new TimeSpan(0, 0, db.CounterStores.First().Counter));
             }
         }
